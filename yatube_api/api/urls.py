@@ -3,9 +3,29 @@ from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from django.conf.urls import url
 from rest_framework import permissions
+from django.urls import include, path
+from rest_framework.routers import DefaultRouter as Router
+
+from api.views import (
+    PostViewSet,
+    GroupViewSet,
+    CommentViewSet,
+    FollowingViewSet,
+)
+
+
+v1_router = Router()
+
+v1_router.register('posts', PostViewSet, basename='posts')
+v1_router.register('groups', GroupViewSet, basename='groups')
+v1_router.register('following', FollowingViewSet, basename='following')
+v1_router.register('comments', CommentViewSet, basename='comments')
 
 
 urlpatterns = [
+    path('v1/', include(v1_router.urls)),
+    path('v1/', include('djoser.urls')),
+    path('v1/', include('djoser.urls.jwt')),    
 ]
 
 
