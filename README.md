@@ -3,7 +3,7 @@
 Api for
 [Yatube](https://github.com/Alexey-zaliznuak/Yatube)
 created by
-[redoc documentation](/blob/master/yatube_api/static/redoc.yaml)
+[redoc documentation](/yatube_api/static/redoc.yaml)
 
 Also you can see Swagger Yatube Api on `/api/` or `/api/swagger/`
 
