@@ -1,9 +1,12 @@
-from .mixins_viewsets import GetRetrieveViewSet
 from rest_framework import viewsets
-
 from rest_framework.permissions import IsAuthenticated
+
 from .permissions import (
     IsAuthorPermission,
+)
+
+from .mixins_viewsets import (
+    ListCreateViewSet,
 )
 
 from .serializers import (
@@ -16,7 +19,7 @@ from .serializers import (
 from posts.models import Post, Group, Comment, Following
 
 
-class GroupViewSet(GetRetrieveViewSet):
+class GroupViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
 
@@ -53,8 +56,8 @@ class CommentViewSet(viewsets.ModelViewSet):
         return self.kwargs.get("post_id")
 
 
-class FollowingViewSet(viewsets.ModelViewSet):
-    queryset = Post.objects.all()
+class FollowingViewSet(ListCreateViewSet):
+    queryset = Following.objects.all()
     serializer_class = FollowingSerializer
     permission_classes = (IsAuthorPermission, IsAuthenticated)
 
