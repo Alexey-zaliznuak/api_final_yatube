@@ -60,7 +60,6 @@ class CommentViewSet(viewsets.ModelViewSet):
 
 
 class FollowingViewSet(ListCreateViewSet):
-    queryset = Following.objects.all()
     serializer_class = FollowingSerializer
     permission_classes = (IsAuthorPermission, IsAuthenticated)
     filter_backends = (filters.SearchFilter, )
@@ -68,3 +67,8 @@ class FollowingViewSet(ListCreateViewSet):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+    def get_queryset(self):
+        queryset = Following.objects.all()
+        user = self.request.user
+        queryset = queryset.filter(user=user)
