@@ -1,5 +1,7 @@
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.pagination import LimitOffsetPagination
+from rest_framework import filters
 
 from .permissions import (
     IsAuthorPermission,
@@ -30,6 +32,7 @@ class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     permission_classes = (IsAuthorPermission, IsAuthenticated)
+    pagination_class = LimitOffsetPagination
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
@@ -60,6 +63,8 @@ class FollowingViewSet(ListCreateViewSet):
     queryset = Following.objects.all()
     serializer_class = FollowingSerializer
     permission_classes = (IsAuthorPermission, IsAuthenticated)
+    filter_backends = (filters.SearchFilter, )
+    search_fields = ('user', 'following') 
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
