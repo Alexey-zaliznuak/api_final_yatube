@@ -4,7 +4,7 @@ from rest_framework import viewsets
 
 class ListCreateViewSet(
     mixins.ListModelMixin,
-    mixins.CreateModelMixin ,
+    mixins.CreateModelMixin,
     viewsets.GenericViewSet,
 ):
     ...

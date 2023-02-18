@@ -1,7 +1,7 @@
 from rest_framework import permissions
 
 
-class IsAuthorPermission(permissions.BasePermission):
+class IsAuthorOrReadOnlyPermission(permissions.BasePermission):
     """
     Object-level permission to only allow author of an object to edit it.
     Assumes the model instance has an `author` attribute.
