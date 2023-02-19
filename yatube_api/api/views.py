@@ -61,7 +61,7 @@ class CommentViewSet(viewsets.ModelViewSet):
         serializer.save(
             author=self.request.user,
             post=Post.objects.get(
-                pk=self.kwargs.get('post_id')
+                pk=self.post_id
             )
         )
 

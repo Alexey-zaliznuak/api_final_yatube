@@ -7,4 +7,4 @@ class ListCreateViewSet(
     mixins.CreateModelMixin,
     viewsets.GenericViewSet,
 ):
-    ...
+    pass
