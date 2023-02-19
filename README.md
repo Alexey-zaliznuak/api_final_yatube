@@ -13,6 +13,17 @@ Python 3.11
 Django 3.2.16
 
 DRF 3.12.4
+
+PyJWT 2.1.0
+
+djoser 2.1.0
+
+djangorestframework-simplejwt 4.7.2
+
+drf-yasg 1.21.5
+
+SQLite
+
 ### Environment Variables
 
 To run this project, you will need to add the following environment variables to your .env file
